@@ -5,10 +5,7 @@ import org.example.productthymeleaf.service.IProductService;
 import org.example.productthymeleaf.service.ProductService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
@@ -65,4 +62,16 @@ public class ProductController {
         model.addAttribute("product", productService.findById(id));
         return "/view";
     }
+    @GetMapping("/search")
+    public String search(){
+        return "/search";
+    }
+
+    @PostMapping("/search")
+    public String search(@RequestParam String name, Model model){
+        List<Product> productList = productService.findByName(name);
+        model.addAttribute("products", productList);
+        return "/search";
+    }
+
 }

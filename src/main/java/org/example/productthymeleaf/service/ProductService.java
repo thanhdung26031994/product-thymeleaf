@@ -38,4 +38,15 @@ public class ProductService implements IProductService{
     public void remove(Integer id) {
         productMap.remove(id);
     }
+
+    @Override
+    public List<Product> findByName(String name) {
+        List<Product> products = new ArrayList<>();
+        for (Map.Entry<Integer, Product> entry: productMap.entrySet()){
+            if (entry.getValue().getName().equalsIgnoreCase(name)){
+                products.add(entry.getValue());
+            }
+        }
+        return products;
+    }
 }

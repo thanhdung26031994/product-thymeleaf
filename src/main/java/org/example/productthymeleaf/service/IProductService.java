@@ -16,4 +16,6 @@ public interface IProductService {
     void update(Integer id, Product product);
 
     void remove(Integer id);
+
+    List<Product> findByName(String name);
 }

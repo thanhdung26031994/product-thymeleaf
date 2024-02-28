@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="/layout :: head">
+    <title>ListCustomer</title>
+</head>
+<body>
+<h3>Products</h3>
+<div style="text-align: center">
+    <h3>Tìm kiếm sản phẩm</h3>
+    <form th:action="@{/products/search}" method="post" style="width: 30%;padding-left: 35%">
+        <input type="text" name="name">
+        <input type="submit" value="Tìm kiếm">
+    </form>
+</div>
+<p th:if="${products.isEmpty()}">Không có sản phẩm tương tự</p>
+<div th:if="${!products.isEmpty()}">
+<table id = "products">
+    <thead>
+    <tr>
+        <th>STT</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Describe</th>
+        <th>Address</th>
+
+        <th>Edit</th>
+        <th>Delete</th>
+        <th>View</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="p, rowStat : ${products}">
+        <td th:text="${rowStat.count}"></td>
+        <td th:text="${p.name}"></td>
+        <td th:text="${p.price}"></td>
+        <td th:text="${p.getDescribe()}"></td>
+        <td th:text="${p.getAddress()}"></td>
+        <td><a th:href="@{/products/{id}/edit(id=${p.getId()})}">edit</a></td>
+        <td><a th:href="@{/products/{id}/delete(id=${p.getId()})}">delete</a></td>
+        <td><a th:href="@{/products/{id}/view(id=${p.getId()})}">view</a></td>
+    </tr>
+    </tbody>
+</table>
+</div>
+<footer th:replace="/layout :: footer"></footer>
+</body>
+</html>
