@@ -1,4 +1,4 @@
-package org.example.customermanagementthymeleaf.configuration;
+package org.example.productthymeleaf.configuration;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
